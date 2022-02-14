@@ -19,12 +19,16 @@ We address questions such as the following:
 - Are there individual users that commonly spread political misinformation across all subreddits?
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+### Data Collection
 
-### Jekyll Themes
+Through the use of the Reddit API, which is well-documented and commonly used in similar studies, we were able to collect a robust dataset with which to do our analyses. Our datasets were primarily gathered through repeated calls to the Pushshift API along with the python Reddit API wrapper (PRAW), which allowed us to store metadata on approximately 2,000,000 Reddit posts from our list of political subreddits. We curated this list of subreddits in hopes of creating a sample that accurately represents all the differing communities of political information shared on Reddit, and then extracted all posts containing URLs from 2020 to 2021 in JSONL format, separated by subreddit. These posts contain specific information on the post title, ID, upvote ratio, score, and more. In order to determine if a post is an instance of misinformation, we created a database of unreliable domains to cross-check and determine the presence of a URL that commonly spreads misinformation.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ad-iti/DSC180B_Group5_Website/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### Methods
 
-### Support or Contact
+In order to characterize misinformation, we utilized the aforementioned list of unreliable domains to cross reference every post in the dataset, moving one subreddit at a time. We counted the total number of posts for each subreddit over the two year span that contained urls to an outgoing site, along with the number of those urls that matched a domain on our list. These data points were compiled on a csv file with each row containing the subreddit name, total posts, and total posts with misinformation.
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+
+
+### Results
+
+### Sources
