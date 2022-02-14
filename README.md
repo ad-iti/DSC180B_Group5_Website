@@ -27,9 +27,9 @@ Through the use of the Reddit API, which is well-documented and commonly used in
 
 In order to characterize misinformation, we utilized the aforementioned list of unreliable domains to cross reference every post in the dataset, moving one subreddit at a time. We counted the total number of posts for each subreddit over the two year span that contained urls to an outgoing site, along with the number of those urls that matched a domain on our list. These data points were compiled on a csv file with each row containing the subreddit name, total posts, and total posts with misinformation.
 
-![Misinfo](/assets/images/misinfo.png)
+![Misinfo](https://github.com/ad-iti/DSC180B_Group5_Website/blob/main/docs/assets/images/misinfo.png)
 
-![Graph](/assets/graph.png)
+![Graph](https://github.com/ad-iti/DSC180B_Group5_Website/blob/main/docs/assets/images/graph.png)
 
 ### Results
 
