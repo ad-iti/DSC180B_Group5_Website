@@ -1,29 +1,22 @@
-## Welcome to GitHub Pages
+## Political Misinformation on Reddit
 
-You can [editor on GitHub](https://github.com/ad-iti/DSC180B_Group5_Website/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+The problem of online misinformation is one that has not only majorly dictated the public sentiment of certain political figures and events, but has also sowed a general distrust of political authority in most of the American public, leading to changes in outcomes of major elections and more.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+[Reddit](https://www.reddit.com/), which is one of the largest American social platforms, has had a number of known incidents regarding misinformation, including the banning of numerous controversial subreddits.
 
-### Markdown
+### Introduction
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+In this project, we investigate the dissemination and characterization of misinformation spread on the online discussion site Reddit, looking specifically at a large subset of randomly selected American political subreddits using the Reddit API.
+
+By taking advantage of Reddit’s hierarchical structure of subreddits, moderators, users, posts, and comments, we hope to replicate the investigation on the spread of misinformation on Twitter (from Q1) with a similar investigation on the spread of political misinformation on Reddit in the years 2020 and 2021.
+
+We address questions such as the following:
 
 ```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+- To what extent do (American) political boards/forums/subreddits on Reddit share misinformation?
+- Is there any notable difference in the k-core decomposition of Reddit vs. Twitter?
+- Is there any significant difference across subreddits in the type of political misinformation being spread?
+- Are there individual users that commonly spread political misinformation across all subreddits?
 ```
 
 For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
