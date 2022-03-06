@@ -27,9 +27,29 @@ Through the use of the Reddit API, which is well-documented and commonly used in
 
 In order to characterize misinformation, we utilized the aforementioned list of unreliable domains to cross reference every post in the dataset, moving one subreddit at a time. We counted the total number of posts for each subreddit over the two year span that contained urls to an outgoing site, along with the number of those urls that matched a domain on our list. These data points were compiled on a csv file with each row containing the subreddit name, total posts, and total posts with misinformation.
 
-![Misinfo](https://github.com/ad-iti/DSC180B_Group5_Website/blob/main/docs/assets/images/misinfo.png)
+<style>
 
-![Graph](https://github.com/ad-iti/DSC180B_Group5_Website/blob/main/docs/assets/images/graph.png)
+    .node {
+      stroke: #fff;
+      stroke-width: 0.4px;
+    }
+    
+    .link {
+       stroke: rgb(0,0,0);
+      stroke-width: 0.5px;
+    }
+    
+    </style>
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+<input id="postCutoff" type="number" step="any" value="100">
+<button id="updateButton">Update Graph</button>
+
+<script src="d3_test.js"></script>
 
 As we continue our investigation, we hope to more robustly identify misinformation by utilizing natural language processing techniques to analyze comments on posts and look for flags indicating that a post is misinformation. Additionally, we may choose to highlight specific users with a large number of posts in future graphs, as well as potentially making a graph of users based on how users comment on each other’s posts. 
 
