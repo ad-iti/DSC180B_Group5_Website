@@ -1,4 +1,4 @@
-## Political Misinformation on Reddit test
+## Political Misinformation on Reddit
 
 The problem of online misinformation is one that has not only majorly dictated the public sentiment of certain political figures and events, but has also sowed a general distrust of political authority in most of the American public, leading to changes in outcomes of major elections and more.
 
