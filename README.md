@@ -46,6 +46,7 @@ In order to characterize misinformation, we utilized the aforementioned list of 
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
+Minimum posts:
 <input id="postCutoff" type="number" step="any" value="100">
 <button id="updateButton">Update Graph</button>
 
@@ -53,7 +54,11 @@ In order to characterize misinformation, we utilized the aforementioned list of 
 
 As we continue our investigation, we hope to more robustly identify misinformation by utilizing natural language processing techniques to analyze comments on posts and look for flags indicating that a post is misinformation. Additionally, we may choose to highlight specific users with a large number of posts in future graphs, as well as potentially making a graph of users based on how users comment on each other’s posts. 
 
-[test](comments_graph_1.html)
+Graphs of word frequency in comments relative to misinformation: (include additonal descriptions etc later)
+
+[Comments Graph 1](comments_graph_1.html)
+
+[Comments Graph 2](comments_graph_2.html)
 
 ### Results
 
