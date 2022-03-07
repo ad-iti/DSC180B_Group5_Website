@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 40},
 width = (1000) - margin.left - margin.right,
-height = (1200) - margin.top - margin.bottom;
+height = (1100) - margin.top - margin.bottom;
 
 var cutoff = 100
 
