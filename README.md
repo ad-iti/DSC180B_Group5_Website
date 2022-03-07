@@ -86,7 +86,7 @@ Minimum Posts per user
   <div class="multiselect">
     <div class="selectBox" onclick="showCheckboxes()">
       <select>
-        <option>Select Subreddits to Include</option>
+        <option>Select Subreddits</option>
       </select>
       <div class="overSelect"></div>
     </div>
