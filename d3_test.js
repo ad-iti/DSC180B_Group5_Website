@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 40},
-width = (5000/5) - margin.left - margin.right,
-height = (5000/5) - margin.top - margin.bottom;
+width = (1000) - margin.left - margin.right,
+height = (1200) - margin.top - margin.bottom;
 
 var cutoff = 100
 
@@ -48,7 +48,7 @@ function updateGraph() {
 }
 d3.select('#updateButton').on('click', updateGraph);
 createGraph();
-// try removing svg or g and reading json from reset function
+
 function createGraph() {
   
   d3.json("graph.json", function(error, data) {
@@ -83,8 +83,6 @@ function createGraph() {
       var cont = containsObject(d.source, nodes)
       var sub = containsObject(d.target, nodes)
       if (cont[0] && sub[0]) {
-        //d.source = nodes[cont[1]]
-        //d.target = nodes[sub[1]]
         links.push(d)
       }
     })
@@ -92,45 +90,6 @@ function createGraph() {
     console.log(nodes)
   }
   createNetwork(cutoff);
-
-  //function updateNetwork(n, l) {
-    //link = svg.select("g")
-  //  .attr("class", "link")
-  //  .selectAll("line").data(l);
-
-  //  link.exit().remove();
-
-  //  link.enter().append("line")
-  //  .attr("x1", function(d) { return d.source.x; })
-  //  .attr("y1", function(d) { return d.source.y; })
-  //  .attr("x2", function(d) { return d.target.x;  })
-  //  .attr("y2", function(d) { return d.target.y; })
-  //  .style("stroke", linkColor);
-
-  //  node = svg.select("g")
-  //  .attr("class", "node")
-   // .selectAll("circle").data(n);
-
-  //  node.exit().remove();
-
-  //  node.enter().append("circle")
-  //  .attr("r", function(d) {return d.size})
-  //  .style("fill", function(d) {return d.color})
-  //  .attr("cx", function(d){return d.x})
-  //  .attr("cy", function(d){return d.y });
-
-    //node.append("title")
-    //.text(function(d){return d.name});
- // }
-
-//  function updateGraph() {
-//    cutoff = document.getElementById("postCutoff").value;
-//    console.log(cutoff)
-//    createNetwork(cutoff);
-//    updateNetwork(nodes, links)
-//  }
-//  d3.select('#updateButton').on('click', updateGraph);
-  
 
   console.log(data);
 // Initialize the links
@@ -189,13 +148,41 @@ node.on("click", clicked)
       .attr("x", 5);
 
     tip.append("text")
-      .text("Info: " + d.posts)
+      .text("Total Posts: " + d.posts)
       .attr("dy", "2em")
       .attr("x", 5);
 
+    tip.append("text")
+      .text("Misinfo Posts: " + d.mis)
+      .attr("dy", "3em")
+      .attr("x", 5);
+
+    tip.append("text")
+      .text("% Misinfo: " + Math.round((((d.mis / d.posts) * 100) + Number.EPSILON) * 100) / 100  + '%')
+      .attr("dy", "4em")
+      .attr("x", 5);
+    if (d.sub == 0){
+      tip.append("text")
+        .text("Subs posted to: ")
+        .attr("dy", "5em")
+        .attr("x", 5);
+      for (let i = 0; i < Math.floor((d.subs.length + 1) / 2); i++) {
+        if (i == 0){
+          tip.append("text")
+          .text("          " + d.subs.slice(0,2).toString().replace(',', '   '))
+          .attr("dy", (i+6).toString() +"em")
+          .attr("x", 20);
+        } else {
+        tip.append("text")
+        .text("          " + d.subs.slice((i*2), (i*2)+2).toString().replace(',', '   '))
+        .attr("dy", (i+6).toString() +"em")
+        .attr("x", 20);
+        }
+      }
+    }
     var bbox = tip.node().getBBox();
-    rect.attr("width", bbox.width + 5)
-        .attr("height", bbox.height + 5)
+    rect.attr("width", bbox.width + 10)
+        .attr("height", bbox.height + 10)
     }
 
     function dragged(d) {
@@ -204,29 +191,6 @@ node.on("click", clicked)
       link.filter(function(l) { return l.source === d; }).attr("x1", d.x).attr("y1", d.y);
       link.filter(function(l) { return l.target === d; }).attr("x2", d.x).attr("y2", d.y);
     }
-  
-// Let's list the force we wanna apply on the network
-//var simulation = d3.forceSimulation(data.nodes)                 // Force algorithm is applied to data.nodes
-//    .force("link", d3.forceLink()                               // This force provides links between nodes
-//          .id(function(d) { return d.name; })                     // This provide  the id of a node
-//          .links(data.links)                                    // and this the list of links
-//    )
-//    .force("charge", d3.forceManyBody().strength(-200))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
-//    .force("center", d3.forceCenter(width / 2, height / 2))     // This force attracts nodes to the center of the svg area
-//    .on("end", ticked);
-
-// This function is run at each iteration of the force algorithm, updating the nodes position.
-//function ticked() {
-//  link
-//      .attr("x1", function(d) { return d.source.x; })
-//      .attr("y1", function(d) { return d.source.y; })
-//      .attr("x2", function(d) { return d.target.x; })
-//      .attr("y2", function(d) { return d.target.y; });
-
-//  node
-//       .attr("cx", function (d) { return d.x; })
-//       .attr("cy", function(d) { return d.y; });
-//}
 
 });
 }
