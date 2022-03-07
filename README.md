@@ -39,6 +39,39 @@ In order to characterize misinformation, we utilized the aforementioned list of 
       stroke-width: 0.5px;
     }
     
+    .multiselect {
+  width: 200px;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+  font-weight: bold;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: #1e90ff;
+}
     </style>
 
 <!-- Load d3.js -->
@@ -46,9 +79,49 @@ In order to characterize misinformation, we utilized the aforementioned list of 
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
-Minimum posts:
 <input id="postCutoff" type="number" step="any" value="100">
 <button id="updateButton">Update Graph</button>
+<form>
+  <div class="multiselect">
+    <div class="selectBox" onclick="showCheckboxes()">
+      <select>
+        <option>Select an option</option>
+      </select>
+      <div class="overSelect"></div>
+    </div>
+    <div id="checkboxes">
+    <label><input class="checkbox" type="checkbox" value="alltheleft" checked>alltheleft</label>
+    <label><input class="checkbox" type="checkbox" value="AmericanPolitics" checked>AmericanPolitics</label>
+    <label><input class="checkbox" type="checkbox" value="Anarchism" checked>Anarchism</label>
+    <label><input class="checkbox" type="checkbox" value="Anarchist" checked>Anarchist</label>
+    <label><input class="checkbox" type="checkbox" value="AnarchoPacifism" checked>AnarchoPacifism</label>
+    <label><input class="checkbox" type="checkbox" value="blackflag" checked>blackflag</label>
+    <label><input class="checkbox" type="checkbox" value="Capitalism" checked>Capitalism</label>
+    <label><input class="checkbox" type="checkbox" value="Communist" checked>Communist</label>
+    <label><input class="checkbox" type="checkbox" value="Conservative" checked>Conservative</label>
+    <label><input class="checkbox" type="checkbox" value="conservatives" checked>conservatives</label>
+    <label><input class="checkbox" type="checkbox" value="conspiracy" checked>conspiracy</label>
+    <label><input class="checkbox" type="checkbox" value="democracy" checked>democracy</label>
+    <label><input class="checkbox" type="checkbox" value="democrats" checked>democrats</label>
+    <label><input class="checkbox" type="checkbox" value="GreenParty" checked>GreenParty</label>
+    <label><input class="checkbox" type="checkbox" value="Liberal" checked>Liberal</label>
+    <label><input class="checkbox" type="checkbox" value="Libertarian" checked>Libertarian</label>
+    <label><input class="checkbox" type="checkbox" value="LibertarianSocialism" checked>LibertarianSocialism</label>
+    <label><input class="checkbox" type="checkbox" value="Liberty" checked>Liberty</label>
+    <label><input class="checkbox" type="checkbox" value="moderatepolitics" checked>moderatepolitics</label>
+    <label><input class="checkbox" type="checkbox" value="neoprogs" checked>neoprogs</label>
+    <label><input class="checkbox" type="checkbox" value="politics" checked>politics</label>
+    <label><input class="checkbox" type="checkbox" value="progressive" checked>progressive</label>
+    <label><input class="checkbox" type="checkbox" value="republicanism" checked>republicanism</label>
+    <label><input class="checkbox" type="checkbox" value="Republican" checked>Republican</label>
+    <label><input class="checkbox" type="checkbox" value="republicans" checked>republicans</label>
+    <label><input class="checkbox" type="checkbox" value="SocialDemocracy" checked>SocialDemocracy</label>
+    <label><input class="checkbox" type="checkbox" value="socialism" checked>socialism</label>
+    <label><input class="checkbox" type="checkbox" value="uspolitics" checked>uspolitics</label>
+    </div>
+  </div>
+</form>
+
 
 <script src="d3_test.js"></script>
 
