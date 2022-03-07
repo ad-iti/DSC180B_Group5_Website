@@ -79,13 +79,14 @@ In order to characterize misinformation, we utilized the aforementioned list of 
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
+Minimum Posts per user
 <input id="postCutoff" type="number" step="any" value="100">
 <button id="updateButton">Update Graph</button>
 <form>
   <div class="multiselect">
     <div class="selectBox" onclick="showCheckboxes()">
       <select>
-        <option>Select an option</option>
+        <option>Select Subreddits to Include</option>
       </select>
       <div class="overSelect"></div>
     </div>
