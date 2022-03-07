@@ -22,10 +22,25 @@ var svg = d3.select("#my_dataviz")
 .attr("width", width + margin.left + margin.right)
 .attr("height", height + margin.top + margin.bottom);
 
+var expanded = false;
+
+function showCheckboxes() {
+  var checkboxes = document.getElementById("checkboxes");
+  if (!expanded) {
+    checkboxes.style.display = "block";
+    expanded = true;
+  } else {
+    checkboxes.style.display = "none";
+    expanded = false;
+  }
+}
+
 var links = [];
 var nodes = [];
+var sel_subs = [];
 
 function updateGraph() {
+  
   cutoff = document.getElementById("postCutoff").value;
   console.log(cutoff)
   d3.selectAll("g > *").remove()
@@ -38,17 +53,28 @@ function createGraph() {
   
   d3.json("graph.json", function(error, data) {
     if (error) throw error;
+  
+  sel_subs.length = 0;
+  var boxes = d3.selectAll("input.checkbox:checked");
+      boxes.each(function() {sel_subs.push(this.value)})
+    console.log(sel_subs)
 
+  var inc_nodes = [];
   data.links.forEach(function(d) {
     d.source = data.nodes[d.source];
     d.target = data.nodes[d.target];
+    if (sel_subs.includes(d.target.name)) {
+        inc_nodes.push(d.source.name)
+    }
   });
 
   function createNetwork(cutoff) {
     links.length = 0;
     nodes.length = 0;
     data.nodes.forEach(function(d) {
-      if (d.posts >= cutoff || d.sub == 1) {
+      if (d.posts >= cutoff && d.sub == 0 && inc_nodes.includes(d.name)) {
+          nodes.push(d)
+      } else if (d.sub == 1 && sel_subs.includes(d.name)) {
           nodes.push(d)
       }
     })
