@@ -1,10 +1,10 @@
-## Political Misinformation on Reddit
+# Political Misinformation on Reddit
 
 The problem of online misinformation is one that has not only majorly dictated the public sentiment of certain political figures and events, but has also sowed a general distrust of political authority in most of the American public, leading to changes in outcomes of major elections and more.
 
 [Reddit](https://www.reddit.com/), which is one of the largest American social platforms, has had a number of known incidents regarding misinformation, including the banning of numerous controversial subreddits.
 
-### Introduction
+## Introduction
 
 In this project, we investigate the dissemination and characterization of misinformation spread on the online discussion site Reddit, looking specifically at a large subset of randomly selected American political subreddits using the Reddit API.
 
@@ -19,17 +19,17 @@ We address questions such as the following:
 - Are there individual users that commonly spread political misinformation across all subreddits?
 ```
 
-### Data Collection
+## Data Collection
 
 Through the use of the Reddit API, which is well-documented and commonly used in similar studies, we were able to collect a robust dataset with which to do our analyses. Our datasets were primarily gathered through repeated calls to the Pushshift API along with the python Reddit API wrapper (PRAW), which allowed us to store metadata on approximately 2,000,000 Reddit posts from our list of political subreddits. We curated this list of subreddits in hopes of creating a sample that accurately represents all the differing communities of political information shared on Reddit, and then extracted all posts containing URLs from 2020 to 2021 in JSONL format, separated by subreddit. These posts contain specific information on the post title, ID, upvote ratio, score, and more. In order to determine if a given Reddit post is an instance of misinformation, we created a database of 800+ unreliable domains sourced from Iffy.com [2] that are known to regularly publish false information, as verified by low MBFC (Media Bias/Fact Check) and FR (Factual Reporting) scores. We then use this list of highly non-credible sources to cross-check and determine the presence of a matching URL that commonly spreads misinformation in a given Reddit post, using this as our final metric of information categorization. 
 
 After doing so, we use the gathered Reddit posts to extract all associated comments using the Python Reddit API wrapper, which produces a CommentForrest object allowing us to perform a breadth-first search to access all top-level comments and their corresponding replies. As we are only interested in the most popular top-level (can not be a reply) comments, we then use the JSONL post files to cross check the Reddit post link and download up to 1000 top-level comments in CSV format. We note that the comments are parsed as messy and unformatted strings, with several non-English and non-unicode characters that will require processing before use.
 
-### Methods
+## Methods
 
 Utilizing the list of non-credible domains, we cross reference every outgoing link in our dataset one subreddit at a time to gather data on the proportion of links likely containing misinformation to the total number of links in the subreddit. We count the total number of posts for each subreddit over the two year span that contains urls to an outgoing site, along with the number of those urls that match a domain on our list. These data points are compiled on a CSV file with each row containing the subreddit name, total posts, and total posts with misinformation.
 
-# Network Graph
+### Network Graph
 
 The graph below between users and subreddits visualizes how users posted across subreddits and the amount of misinformation spread. Users and subreddits are both represented by a node, with an edge from a user to a subreddit if the user has posted in that subreddit. The size of the nodes for users is proportional to their total number of posts, and the color of the user node is blue if they have not posted misinformation, and orange if they have. The edges are also colored according to misinformation, with blue edges indicating a user has not posted misinformation to that subreddit and orange edges indicating that they have. Red nodes represent subreddits, with a connection between a user and subreddit if the user has posted to that subreddit. 
 
@@ -134,7 +134,7 @@ Minimum Posts per user
 
 <script src="d3_test.js"></script>
 
-# Comment Exploration
+### Comment Exploration
 
 To accompany the aforementioned multi-level network analysis, we perform additional analyses on the associated top-level comments in order to further investigate the spread of political misinformation by characterizing a difference in the textual metadata of posts that contain true information and posts that contain misinformation. As such, we construct two descriptive models that allow us to compare across two categories (true and false information) the polarity and subjectivity, identify any highly associated words or phrases, and ultimately describe any significant discrepancies in the comments not only between the two target categories, but also across all subreddits. Before proceeding with the analysis, we clean and process the textual comment data to allow for uniform and unbiased NLP-- specifically, we use the NLTK and regex tokenize and replace functions (respectively) to split each comment into clean, lower-case, punctuation-free, and tokenized sentences. We then create a custom list of stop words building off of the vocabulary suggestions provided in the paper ‘Raising the Flag: Monitoring User Perceived Disinformation on Reddit’ by Achimescu et al. [3], which allows us to filter out superfluous or unneeded words/phrases such as ‘is’, ‘he’s’, or ‘bot’. We then loop through each subreddit and merge the CSV comment data with the JSONL post data to keep only the posts with at least one top-level comment (keeping each subreddit separate), and apply the same aforementioned technique of identifying misinformation using a predetermined list of unreliable domains. Finally, given that the size of our data has more than quadrupled after storing all textual comment data, we convert the data into lazy out-of-core dataframes using Vaex, which allows us to perform very large computational and visualization tasks in an on-the-fly, memory efficient manner.
 
@@ -148,7 +148,7 @@ The second plot we generate, linked below, allows us to visually compare the cor
 
 [Comment Word Usage Scatter (WARNING: Takes a long time to load)](comments_graph_2.html)
 
-### Results
+## Results
 
 Our social network analysis of both user and subreddit interactions reveals to us that approximately 7% of all information posted is misinformation, while some subreddits (typically right-leaning) and users are more prone to containing misinformation than others. We also construct a graph of only user to user interactions to track the spread of misinformation among users, noting that users who post frequently in the same forums are more likely to interact with each other. After performing k-core decomposition on both graphs, we generate k values of 15 and 2,911, respectively. While these values are not directly comparable to those found in the k-core decomposition of Twitter tweets, we do see that our k values are considerably larger than those of Twitter, which is to be expected given the structure of Reddit. The k-value of 15 on the user subreddit interaction graph indicates that the network has a core of size 15 subreddits-- or that the most densely populated core of political misinformation being spread exists within a core of 15 subreddits. This is a much larger community than the ~7-core found in Twitter (given that each subreddit can have thousands of users), and is highly indicative of an echo chamber effect among users of those 15 subreddits. And when comparing the user-user Reddit interactions to the user-user Twitter interactions, we find that misinformation exists mainly within tightly knit communities of nearly 3,000 users in the gathered subreddits. By finding these cores, we’ve shown that the same users and subreddits appear to spread misinformation, and through textual analysis we report similar findings for the comment’ content.
 
@@ -166,8 +166,9 @@ In conclusion, we present an investigation into both the structure and content o
 4. arXiv:1703.00565 [cs.CL]
 ```
 
-# Credits
+#### Credits
 Aditi Shrivastava: adshriva@ucsd.edu
+
 Tyler Ready: tready@ucsd.edu
 
 
